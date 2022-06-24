@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { setAuthedUser } from "../actions/authedUser";
+import SignOut from "./SignOut";
 
-const Nav = ({ authedUser, dispatch }) => {
+const Nav = ({ authedUser }) => {
   const [open, setOpen] = useState(false);
 
   const handleBurger = () => {
     setOpen(!open);
-  };
-
-  const handleSignOut = (e) => {
-    e.preventDefault();
-    dispatch(setAuthedUser(null));
   };
 
   return (
@@ -35,37 +30,25 @@ const Nav = ({ authedUser, dispatch }) => {
         id="main-navbar"
         className={"navbar-menu" + (open ? " is-active" : "")}
       >
-        {authedUser && (
-          <div className="navbar-start">
-            <div className="navbar-item">
-              <Link to="/">Home</Link>
-            </div>
-            <div className="navbar-item">
-              <Link to="/leaderboard">Leaderboard</Link>
-            </div>
-            <div className="navbar-item">
-              <Link to="/new">New</Link>
-            </div>
-          </div>
-        )}
+        <div className="navbar-start">
+          {authedUser && (
+            <Fragment>
+              <div className="navbar-item">
+                <Link to="/">Home</Link>
+              </div>
+              <div className="navbar-item">
+                <Link to="/leaderboard">Leaderboard</Link>
+              </div>
+              <div className="navbar-item">
+                <Link to="/new">New</Link>
+              </div>
+            </Fragment>
+          )}
+        </div>
         <div className="navbar-end">
           {authedUser && (
             <div className="navbar-item">
-              <div class="columns">
-                <div className="column is-narrow">
-                  <figure>
-                    <img src={authedUser.avatarURL} alt={authedUser.name} />
-                  </figure>
-                </div>
-                <div class="column">
-                  <p className="title is-6">{authedUser.name}</p>
-                  <p className="subtitle is-7">
-                    <a href="/" onClick={handleSignOut}>
-                      sign out
-                    </a>
-                  </p>
-                </div>
-              </div>
+              <SignOut />
             </div>
           )}
         </div>
@@ -74,6 +57,8 @@ const Nav = ({ authedUser, dispatch }) => {
   );
 };
 
-const mapStateToProps = ({ authedUser }) => ({ authedUser });
+const mapStateToProps = ({ authedUser, users }) => ({
+  authedUser: users[authedUser],
+});
 
 export default connect(mapStateToProps)(Nav);

@@ -18,6 +18,8 @@ export const saveQuestion = (question) => {
   return _saveQuestion(question);
 };
 
-export const saveQuestionAnswer = (question) => {
-  return _saveQuestionAnswer(question);
+export const saveQuestionAnswer = (authedUser, qid, answer) => {
+  return _saveQuestionAnswer({ authedUser, qid, answer }).catch((e) => {
+    console.error("An error occurred with [_saveQuestionAnswer]: ", e);
+  });
 };

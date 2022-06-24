@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { formatDate } from "../utils/helpers";
 
-const PollView = ({ id, name, avatarURL, timestamp }) => {
+const StickyNote = ({ id, name, avatarURL, timestamp }) => {
   return (
     <div className="column is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
       <div className="card">
@@ -42,4 +42,4 @@ const mapStateToProps = ({ users, questions }, { id }) => {
   };
 };
 
-export default connect(mapStateToProps)(PollView);
+export default connect(mapStateToProps)(StickyNote);

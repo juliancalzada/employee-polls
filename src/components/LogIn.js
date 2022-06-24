@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 import { useNavigate } from "react-router-dom";
 
-const LogIn = ({ users, dispatch }) => {
+const Login = ({ users, dispatch }) => {
   const [usernameText, setUsernameText] = useState("zoshikanlu");
   const [passwordText, setPasswordText] = useState("pass246");
   const [hasError, setHasError] = useState(false);
@@ -105,4 +105,4 @@ const mapStateToProps = ({ users }) => {
   };
 };
 
-export default connect(mapStateToProps)(LogIn);
+export default connect(mapStateToProps)(Login);
