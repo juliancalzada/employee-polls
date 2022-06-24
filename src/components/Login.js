@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ users, dispatch }) => {
   const [usernameText, setUsernameText] = useState("zoshikanlu");
   const [passwordText, setPasswordText] = useState("pass246");
   const [hasError, setHasError] = useState(false);
+  const navigate = useNavigate();
 
   const handleUsername = ({ target }) => {
     setHasError(false);
@@ -29,6 +31,7 @@ const Login = ({ users, dispatch }) => {
       if (id === usernameText && password === passwordText) {
         setHasError(false);
         dispatch(setAuthedUser(authedUser));
+        navigate("/");
       }
     } else {
       setHasError(true);
@@ -38,14 +41,16 @@ const Login = ({ users, dispatch }) => {
   return (
     <div className="has-text-centered">
       <div className="columns is-centered">
-        <div className="column is-4">
-          <h2 className="is-size-3 my-5">Login</h2>
+        <div className="column is-two-fifths">
+          <h2 className="is-size-2 my-5">Login</h2>
 
-          <FontAwesomeIcon
-            className="my-5"
-            icon={solid("user-lock")}
-            size="10x"
-          />
+          <p>
+            <FontAwesomeIcon
+              className="my-5"
+              icon={solid("user-lock")}
+              size="10x"
+            />
+          </p>
 
           {hasError && (
             <article className="message is-danger">
