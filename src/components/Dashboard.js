@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import StickyNote from "./StickyNote";
 
-const Dashboard = ({ unansweredIds, answeredIds }) => {
+const Dashboard = ({ unanswered, completed }) => {
   return (
     <Fragment>
       <h2 className="my-5 is-size-3 has-text-centered-mobile">Dashboard</h2>
@@ -10,7 +10,7 @@ const Dashboard = ({ unansweredIds, answeredIds }) => {
         Unanswered Polls
       </h3>
       <div className="columns is-desktop is-multiline">
-        {unansweredIds.map((id) => (
+        {unanswered.map((id) => (
           <StickyNote key={id} id={id} />
         ))}
       </div>
@@ -18,7 +18,7 @@ const Dashboard = ({ unansweredIds, answeredIds }) => {
         Completed Polls
       </h3>
       <div className="columns is-desktop is-multiline">
-        {answeredIds.map((id) => (
+        {completed.map((id) => (
           <StickyNote key={id} id={id} />
         ))}
       </div>
@@ -26,30 +26,22 @@ const Dashboard = ({ unansweredIds, answeredIds }) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, questions }) => {
-  const questionsList = Object.values(questions).sort(
-    (a, b) => b.timestamp - a.timestamp
-  );
+const mapStateToProps = ({ authedUser, users, questions }) => {
+  // gets the answers the user has completed
+  const { answers } = users[authedUser];
 
-  const unansweredQuestions = questionsList.filter(
-    ({ optionOne, optionTwo }) => {
-      const votes = [...optionOne.votes, ...optionTwo.votes];
-      return !votes.includes(authedUser.id);
-    }
-  );
+  // create a new array of answer ids
+  const completed = Object.keys(answers);
 
-  const answeredQuestions = questionsList.filter(({ optionOne, optionTwo }) => {
-    const votes = [...optionOne.votes, ...optionTwo.votes];
-    return votes.includes(authedUser.id);
-  });
-
-  const getIds = (list) => {
-    return list.map(({ id }) => id);
-  };
+  // created a new array of question ids and sort them by date
+  const unanswered = Object.values(questions)
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .filter(({ id }) => !completed.includes(id))
+    .map(({ id }) => id);
 
   return {
-    unansweredIds: getIds(unansweredQuestions),
-    answeredIds: getIds(answeredQuestions),
+    unanswered,
+    completed,
   };
 };
 
