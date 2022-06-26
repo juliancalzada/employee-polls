@@ -11,20 +11,26 @@ const Nav = ({ authedUser }) => {
   };
 
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav
+      className="navbar is-transparent"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
-        <p className="navbar-item">Emoployee Polls</p>
-        <button
-          className={"navbar-burger" + (open ? " is-active" : "")}
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="main-navbar"
-          onClick={handleBurger}
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </button>
+        <p className="navbar-item">Employee Polls</p>
+        {authedUser && (
+          <button
+            className={"navbar-burger" + (open ? " is-active" : "")}
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="main-navbar"
+            onClick={handleBurger}
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </button>
+        )}
       </div>
       <div
         id="main-navbar"
