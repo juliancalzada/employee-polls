@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, SAVE_QUESTION_ANSWER } from "../actions/users";
+import { RECEIVE_USERS, SAVE_ANSWER } from "../actions/users";
 
 export default function users(state = {}, action) {
   switch (action.type) {
@@ -8,7 +8,7 @@ export default function users(state = {}, action) {
         ...action.users,
       };
 
-    case SAVE_QUESTION_ANSWER:
+    case SAVE_ANSWER:
       return {
         ...state,
         [action.authedUser]: {

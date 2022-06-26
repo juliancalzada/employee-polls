@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { handleSaveVote } from "../actions/users";
+import { handleSaveQuestionAnswer } from "../actions/shared";
 import { withRouter } from "../utils/helpers";
 
 const Poll = (props) => {
@@ -24,12 +24,12 @@ const Poll = (props) => {
 
   const handleVote = (e) => {
     e.preventDefault();
-    dispatch(handleSaveVote(id, answer));
+    dispatch(handleSaveQuestionAnswer(id, answer));
   };
 
   return (
     <div className="columns is-centered">
-      <div className="column is-one-quarter">
+      <div className="column is-half is-one-quarter-fullhd">
         <div className="card">
           <div className="card-image">
             <figure className="image is-square">
@@ -109,16 +109,17 @@ const Poll = (props) => {
 
 const mapStateToProps = ({ authedUser, users, questions }, { router }) => {
   const { id } = router.params;
+  const user = users[authedUser];
   const question = questions[id];
-  const answers = Object.keys(authedUser.answers);
-  const selected = authedUser.answers[id] || "";
+  const answers = Object.keys(user.answers);
+  const selected = user.answers[id] || "";
   const { optionOne, optionTwo } = question;
   const { name, avatarURL } = users[question.author];
 
   return {
+    id,
     avatarURL,
     completed: answers.includes(id),
-    id,
     name,
     optionOne: optionOne.text,
     optionTwo: optionTwo.text,
