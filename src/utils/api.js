@@ -22,8 +22,10 @@ export const saveQuestion = (question) => {
   });
 };
 
-export const saveQuestionAnswer = (authedUser, qid, answer) => {
-  return _saveQuestionAnswer({ authedUser, qid, answer }).catch((e) => {
+export const saveQuestionAnswer = async (authedUser, qid, answer) => {
+  try {
+    return await _saveQuestionAnswer({ authedUser, qid, answer });
+  } catch (e) {
     console.error("An error occurred with [saveQuestionAnswer]: ", e);
-  });
+  }
 };
