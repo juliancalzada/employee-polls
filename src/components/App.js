@@ -17,9 +17,8 @@ function App({ loading, dispatch }) {
 
   return (
     <Fragment>
-      <div className="container is-fluid">
-        <Nav />
-
+      <Nav />
+      <div className="container is-fluid my-5">
         <Routes>
           {loading ? (
             <Fragment>
