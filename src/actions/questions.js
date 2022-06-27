@@ -1,5 +1,6 @@
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const SAVE_VOTE = "SAVE_VOTE";
+export const ADD_QUESTION = "ADD_QUESTION";
 
 /**
  * Loads the questions database.
@@ -26,5 +27,17 @@ export const saveVote = (authedUser, qid, answer) => {
     authedUser,
     qid,
     answer,
+  };
+};
+
+/**
+ * Adds a new question to the list.
+ * @param {object} question The formatted question
+ * @returns {object}
+ */
+export const addQuestion = (question) => {
+  return {
+    type: ADD_QUESTION,
+    question,
   };
 };

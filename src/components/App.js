@@ -9,11 +9,12 @@ import { Route, Routes } from "react-router-dom";
 import NotFound from "./404";
 import Leaderboard from "./Leaderboard";
 import Poll from "./Poll";
+import NewPoll from "./NewPoll";
 
 function App({ loading, dispatch }) {
   useEffect(() => {
     dispatch(handleInitialData());
-  });
+  }, [dispatch]);
 
   return (
     <Fragment>
@@ -29,7 +30,7 @@ function App({ loading, dispatch }) {
             <Fragment>
               <Route path="/" element={<Dashboard />} exact />
               <Route path="/leaderboard" element={<Leaderboard />} />
-              <Route path="/new" element={<Dashboard />} />
+              <Route path="/new" element={<NewPoll />} />
               <Route path="/question/:id" element={<Poll />} />
               <Route path="*" element={<NotFound />} />
             </Fragment>

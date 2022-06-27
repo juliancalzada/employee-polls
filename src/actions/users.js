@@ -1,9 +1,10 @@
 export const RECEIVE_USERS = "RECEIVE_USERS";
-export const SAVE_ANSWER = "  SAVE_ANSWER";
+export const SAVE_ANSWER = "SAVE_ANSWER";
+export const CREATE_QUESTION = "CREATE_QUESTION";
 
 /**
  * Loads the users database.
- * @param {object} users The `users` database
+ * @param {object} users The `users` database return by the api
  * @returns {object}
  */
 export const receiveUsers = (users) => {
@@ -23,5 +24,20 @@ export const saveAnswer = (userId, questionId, answerId) => {
     authedUser: userId,
     qid: questionId,
     answer: answerId,
+  };
+};
+
+/**
+ * Creates a new poll question.
+ * @param {object} question The formatted question returned by the api
+ * @param {string} question.id The unique id generated for the new question
+ * @param {object} question.author The creator of the new question
+ * @returns
+ */
+export const createQuestion = ({ id, author }) => {
+  return {
+    type: CREATE_QUESTION,
+    id,
+    author,
   };
 };
