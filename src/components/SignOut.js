@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 
 const SignOut = (props) => {
-  console.log("props", props);
   const { authedUser, dispatch } = props;
   const handleSignOut = (e) => {
     e.preventDefault();
