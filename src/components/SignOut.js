@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
-import { withRouter } from "../utils/helpers";
 
-const SignOut = ({ authedUser, dispatch, navigate }) => {
+const SignOut = (props) => {
+  console.log("props", props);
+  const { authedUser, dispatch } = props;
   const handleSignOut = (e) => {
     e.preventDefault();
     dispatch(setAuthedUser(null));
-    navigate("/");
   };
 
   return (
@@ -37,4 +37,4 @@ const mapStateToProps = ({ authedUser, users }) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(SignOut));
+export default connect(mapStateToProps)(SignOut);
