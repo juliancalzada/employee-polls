@@ -44,7 +44,7 @@ const Nav = ({ authedUser }) => {
                 <Link to="/leaderboard">Leaderboard</Link>
               </div>
               <div className="navbar-item">
-                <Link to="/new">New</Link>
+                <Link to="/add">New</Link>
               </div>
             </Fragment>
           )}
