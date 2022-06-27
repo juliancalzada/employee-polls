@@ -48,118 +48,113 @@ const Poll = (props) => {
                 Would you rather &hellip;
               </h3>
               <form className="form">
-                <div className="columns is-centered">
-                  <div className="column">
-                    <div className="field">
-                      <div className="control">
-                        <input
-                          id="option-one"
-                          name="your-answer"
-                          className="is-hidden"
-                          type="radio"
-                          checked={answer === OPTION_ONE}
-                          disabled={completed}
-                          value={OPTION_ONE}
-                          onChange={handleOptionChange}
-                        />{" "}
-                        <label
-                          htmlFor="option-one"
-                          className="box radio is-fullwidth"
-                        >
-                          {optionOne}
-                          {completed && (
-                            <div className="columns mt-1 is-mobile is-justify-content-space-between">
-                              <div class="column">
-                                <div className="tags has-addons">
-                                  <span className="tag is-dark">Votes</span>
-                                  <span
-                                    className={
-                                      "tag" +
-                                      (optionOneVotes >= optionTwoVotes
-                                        ? " is-success"
-                                        : " is-danger")
-                                    }
-                                  >
-                                    {optionOneVotes}
-                                  </span>
-                                </div>
-                              </div>
-                              <div class="column is-narrow">
-                                <div className="tags has-addons">
-                                  <span
-                                    className={
-                                      "tag" +
-                                      (optionOneVotes >= optionTwoVotes
-                                        ? " is-success"
-                                        : " is-danger")
-                                    }
-                                  >
-                                    {optionOnePercent}
-                                  </span>
-                                  <span className="tag is-dark">%</span>
-                                </div>
-                              </div>
+                <div className="field">
+                  <div className="control">
+                    <input
+                      id="option-one"
+                      name="your-answer"
+                      className="is-hidden"
+                      type="radio"
+                      checked={answer === OPTION_ONE}
+                      disabled={completed}
+                      value={OPTION_ONE}
+                      onChange={handleOptionChange}
+                    />{" "}
+                    <label
+                      htmlFor="option-one"
+                      className="box radio is-fullwidth"
+                    >
+                      {optionOne}
+                      {completed && (
+                        <div className="columns mt-1 is-mobile is-justify-content-space-between">
+                          <div className="column">
+                            <div className="tags has-addons">
+                              <span className="tag is-dark">Votes</span>
+                              <span
+                                className={
+                                  "tag" +
+                                  (optionOneVotes >= optionTwoVotes
+                                    ? " is-success"
+                                    : " is-danger")
+                                }
+                              >
+                                {optionOneVotes}
+                              </span>
                             </div>
-                          )}
-                        </label>
-                      </div>
-                    </div>
+                          </div>
+                          <div className="column is-narrow">
+                            <div className="tags has-addons">
+                              <span
+                                className={
+                                  "tag" +
+                                  (optionOneVotes >= optionTwoVotes
+                                    ? " is-success"
+                                    : " is-danger")
+                                }
+                              >
+                                {optionOnePercent}
+                              </span>
+                              <span className="tag is-dark">%</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </label>
                   </div>
-                  <div className="column">
-                    <div className="field">
-                      <div className="control">
-                        <input
-                          id="option-two"
-                          name="your-answer"
-                          className="is-hidden"
-                          type="radio"
-                          checked={answer === OPTION_TWO}
-                          disabled={completed}
-                          value={OPTION_TWO}
-                          onChange={handleOptionChange}
-                        />{" "}
-                        <label
-                          htmlFor="option-two"
-                          className="box radio is-fullwidth"
-                        >
-                          {optionTwo}
-                          {completed && (
-                            <div className="columns mt-1 is-mobile is-justify-content-space-between">
-                              <div class="column">
-                                <div className="tags has-addons">
-                                  <span className="tag is-dark">Votes</span>
-                                  <span
-                                    className={
-                                      "tag" +
-                                      (optionOneVotes <= optionTwoVotes
-                                        ? " is-success"
-                                        : " is-danger")
-                                    }
-                                  >
-                                    {optionTwoVotes}
-                                  </span>
-                                </div>
-                              </div>
-                              <div class="column is-narrow">
-                                <div className="tags has-addons">
-                                  <span
-                                    className={
-                                      "tag" +
-                                      (optionOneVotes <= optionTwoVotes
-                                        ? " is-success"
-                                        : " is-danger")
-                                    }
-                                  >
-                                    {optionTwoPercent}
-                                  </span>
-                                  <span className="tag is-dark">%</span>
-                                </div>
-                              </div>
+                </div>
+
+                <div className="field">
+                  <div className="control">
+                    <input
+                      id="option-two"
+                      name="your-answer"
+                      className="is-hidden"
+                      type="radio"
+                      checked={answer === OPTION_TWO}
+                      disabled={completed}
+                      value={OPTION_TWO}
+                      onChange={handleOptionChange}
+                    />{" "}
+                    <label
+                      htmlFor="option-two"
+                      className="box radio is-fullwidth"
+                    >
+                      {optionTwo}
+                      {completed && (
+                        <div className="columns mt-1 is-mobile is-justify-content-space-between">
+                          <div className="column">
+                            <div className="tags has-addons">
+                              <span className="tag is-dark">Votes</span>
+                              <span
+                                className={
+                                  "tag" +
+                                  (optionOneVotes <= optionTwoVotes
+                                    ? " is-success"
+                                    : " is-danger")
+                                }
+                              >
+                                {optionTwoVotes}
+                              </span>
                             </div>
-                          )}
-                        </label>
-                      </div>
-                    </div>
+                          </div>
+                          <div className="column is-narrow">
+                            <div className="tags has-addons">
+                              <span
+                                className={
+                                  "tag" +
+                                  (optionOneVotes <= optionTwoVotes
+                                    ? " is-success"
+                                    : " is-danger")
+                                }
+                              >
+                                {optionTwoPercent}
+                              </span>
+                              <span className="tag is-dark">%</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </label>
                   </div>
                 </div>
                 {!completed && (
