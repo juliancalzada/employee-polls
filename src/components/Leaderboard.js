@@ -46,7 +46,7 @@ const Leaderboard = ({ scoreboard }) => {
 
 /**
  * Maps the users to create a sorted list for the scoreboard.
- * @param {object} param0
+ * @param {object} store.users The `users` slice of the store
  * @returns {object}
  */
 const mapStateToProps = ({ users }) => {
@@ -54,15 +54,15 @@ const mapStateToProps = ({ users }) => {
     scoreboard: Object.values(users)
       .sort((a, b) => {
         // sort by questions created
-        const qa = Object.keys(a.questions).length;
-        const qb = Object.keys(b.questions).length;
-        return qb - qa;
+        const la = Object.keys(a.questions).length;
+        const lb = Object.keys(b.questions).length;
+        return lb - la;
       })
       .sort((a, b) => {
         // sort by questions answered
-        const aa = Object.keys(a.answers).length;
-        const ab = Object.keys(b.answers).length;
-        return ab - aa;
+        const la = Object.keys(a.answers).length;
+        const lb = Object.keys(b.answers).length;
+        return lb - la;
       }),
   };
 };
