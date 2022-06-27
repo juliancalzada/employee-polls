@@ -16,10 +16,12 @@ export const getInitialData = () => {
     });
 };
 
-export const saveQuestion = (question) => {
-  return _saveQuestion(question).catch((e) => {
+export const saveQuestion = async (question) => {
+  try {
+    return await _saveQuestion(question);
+  } catch (e) {
     console.error("An error occurred with [saveQuestion]: ", e);
-  });
+  }
 };
 
 export const saveQuestionAnswer = async (authedUser, qid, answer) => {
