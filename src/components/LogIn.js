@@ -95,6 +95,20 @@ const Login = ({ users, dispatch }) => {
           </form>
         </div>
       </div>
+      <div className="columns is-centered">
+        <div className="column is-two-fifths">
+          <div className="box">
+            <h6 className="is-size-7">Users</h6>
+            {Object.values(users).map((user) => {
+              return (
+                <p key={user.id}>
+                  {user.id}, {user.password}
+                </p>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
