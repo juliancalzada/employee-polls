@@ -9,7 +9,7 @@ const Leaderboard = ({ scoreboard }) => {
         <table className="table is-striped is-hoverable is-fullwidth">
           <thead>
             <tr>
-              <th>User</th>
+              <th colSpan="2">User</th>
               <th className="has-text-centered">Answered</th>
               <th className="has-text-centered">Created</th>
             </tr>
@@ -20,18 +20,11 @@ const Leaderboard = ({ scoreboard }) => {
               return (
                 <tr key={id}>
                   <td>
-                    <div className="media">
-                      <div className="media-left">
-                        <figure className="image is-48x48">
-                          <img src={avatarURL} alt={name} />
-                        </figure>
-                      </div>
-                      <div className="media-content">
-                        <p className="title is-6">{name}</p>
-                        <p className="subtitle is-7">{id}</p>
-                      </div>
-                    </div>
+                    <figure className="image is-48x48">
+                      <img src={avatarURL} alt={name} />
+                    </figure>
                   </td>
+                  <td>{name}</td>
                   <td className="has-text-centered">{totalAnswers}</td>
                   <td className="has-text-centered">{questions.length}</td>
                 </tr>

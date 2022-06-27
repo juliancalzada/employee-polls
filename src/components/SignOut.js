@@ -12,7 +12,7 @@ const SignOut = (props) => {
 
   return (
     <Fragment>
-      <div className="columns">
+      <div className="columns is-mobile">
         <div className="column is-narrow">
           <figure>
             <img src={authedUser.avatarURL} alt={authedUser.name} />

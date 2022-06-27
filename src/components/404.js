@@ -7,7 +7,7 @@ const NotFound = () => {
         Uh oh, we can't seem to find this one!
       </h2>
       <p>
-        Let's get you back on <Link to="/">the right track</Link>.
+        You will need to be logged-in to view this page. Let's get you back on <Link to="/" className="has-text-primary">the right track</Link>.
       </p>
       <p>
         <small>

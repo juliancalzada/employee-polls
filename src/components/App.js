@@ -31,7 +31,7 @@ function App({ loading, dispatch }) {
               <Route path="/" element={<Dashboard />} exact />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/new" element={<NewPoll />} />
-              <Route path="/question/:id" element={<Poll />} />
+              <Route path="/questions/:id" element={<Poll />} />
               <Route path="*" element={<NotFound />} />
             </Fragment>
           )}

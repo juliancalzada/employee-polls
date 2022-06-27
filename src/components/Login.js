@@ -39,7 +39,7 @@ const LogIn = ({ users, dispatch }) => {
   };
 
   return (
-    <div className="has-text-centered">
+    <div className="has-text-centered has-text-white">
       <div className="columns is-centered">
         <div className="column is-two-fifths">
           <h2 className="is-size-2 my-5">Login</h2>

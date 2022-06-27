@@ -20,7 +20,7 @@ const StickyNote = ({ id, name, avatarURL, timestamp }) => {
             </div>
           </div>
           <Link
-            to={`/question/${id}`}
+            to={`/questions/${id}`}
             className="button is-primary is-rounded is-fullwidth"
           >
             Show

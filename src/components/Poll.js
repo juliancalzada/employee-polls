@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { handleSaveQuestionAnswer } from "../actions/shared";
 import { withRouter } from "../utils/helpers";
@@ -13,10 +13,15 @@ const Poll = (props) => {
     optionTwo,
     completed,
     selected,
+    optionOneVotes,
+    optionTwoVotes,
     dispatch,
   } = props;
   const [answer, setAnswer] = useState(selected);
   const [OPTION_ONE, OPTION_TWO] = ["optionOne", "optionTwo"];
+  const total = optionOneVotes + optionTwoVotes;
+  const optionOnePercent = Math.round(100 * (optionOneVotes / total));
+  const optionTwoPercent = Math.round(100 * (optionTwoVotes / total));
 
   const handleOptionChange = (e) => {
     setAnswer(e.target.value);
@@ -62,6 +67,40 @@ const Poll = (props) => {
                           className="box radio is-fullwidth"
                         >
                           {optionOne}
+                          {completed && (
+                            <div className="columns mt-1 is-mobile is-justify-content-space-between">
+                              <div class="column">
+                                <div className="tags has-addons">
+                                  <span className="tag is-dark">Votes</span>
+                                  <span
+                                    className={
+                                      "tag" +
+                                      (optionOneVotes >= optionTwoVotes
+                                        ? " is-success"
+                                        : " is-danger")
+                                    }
+                                  >
+                                    {optionOneVotes}
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="column is-narrow">
+                                <div className="tags has-addons">
+                                  <span
+                                    className={
+                                      "tag" +
+                                      (optionOneVotes >= optionTwoVotes
+                                        ? " is-success"
+                                        : " is-danger")
+                                    }
+                                  >
+                                    {optionOnePercent}
+                                  </span>
+                                  <span className="tag is-dark">%</span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </label>
                       </div>
                     </div>
@@ -84,6 +123,40 @@ const Poll = (props) => {
                           className="box radio is-fullwidth"
                         >
                           {optionTwo}
+                          {completed && (
+                            <div className="columns mt-1 is-mobile is-justify-content-space-between">
+                              <div class="column">
+                                <div className="tags has-addons">
+                                  <span className="tag is-dark">Votes</span>
+                                  <span
+                                    className={
+                                      "tag" +
+                                      (optionOneVotes <= optionTwoVotes
+                                        ? " is-success"
+                                        : " is-danger")
+                                    }
+                                  >
+                                    {optionTwoVotes}
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="column is-narrow">
+                                <div className="tags has-addons">
+                                  <span
+                                    className={
+                                      "tag" +
+                                      (optionOneVotes <= optionTwoVotes
+                                        ? " is-success"
+                                        : " is-danger")
+                                    }
+                                  >
+                                    {optionTwoPercent}
+                                  </span>
+                                  <span className="tag is-dark">%</span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </label>
                       </div>
                     </div>
@@ -122,7 +195,9 @@ const mapStateToProps = ({ authedUser, users, questions }, { router }) => {
     completed: answers.includes(id),
     name,
     optionOne: optionOne.text,
+    optionOneVotes: optionOne.votes.length,
     optionTwo: optionTwo.text,
+    optionTwoVotes: optionTwo.votes.length,
     selected,
   };
 };
