@@ -31,10 +31,14 @@ export const handleInitialData = () => {
 export const handleSaveQuestionAnswer = (questionId, answerId) => {
   return (dispatch, getState) => {
     const { authedUser } = getState();
+    // use the loading bar to provide feedback
+    dispatch(showLoading());
     // let the users slice know there is a new answer to record
     dispatch(saveAnswer(authedUser, questionId, answerId));
     // let the questions slice know there is a new vote to record
     dispatch(saveVote(authedUser, questionId, answerId));
+    // hide loading bar
+    dispatch(hideLoading());
     // update the data
     // TODO: should have error handling? the api always returns `true` but is that for learning purposes?
     return saveQuestionAnswer(authedUser, questionId, answerId);
@@ -50,6 +54,8 @@ export const handleSaveQuestionAnswer = (questionId, answerId) => {
 export const createPoll = (optionOneText, optionTwoText) => {
   return async (dispatch, getState) => {
     const { authedUser } = getState();
+    // use the loading bar to provide feedback
+    dispatch(showLoading());
     try {
       const question = await saveQuestion({
         author: authedUser,
@@ -61,5 +67,7 @@ export const createPoll = (optionOneText, optionTwoText) => {
     } catch (e) {
       console.error("An error occurred with [createPoll]: ", e);
     }
+    // hide loading bar
+    dispatch(hideLoading());
   };
 };
