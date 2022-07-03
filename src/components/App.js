@@ -11,7 +11,7 @@ import Leaderboard from "./Leaderboard";
 import Poll from "./Poll";
 import NewPoll from "./NewPoll";
 
-function App({ loading, dispatch }) {
+function App({ authorized, dispatch }) {
   useEffect(() => {
     dispatch(handleInitialData());
   }, [dispatch]);
@@ -21,18 +21,18 @@ function App({ loading, dispatch }) {
       <Nav />
       <div className="container is-fluid my-5">
         <Routes>
-          {loading ? (
-            <Fragment>
-              <Route path="/" element={<LogIn />} />
-              <Route path="/*" element={<NotFound />} />
-            </Fragment>
-          ) : (
+          {authorized ? (
             <Fragment>
               <Route path="/" element={<Dashboard />} exact />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/add" element={<NewPoll />} />
               <Route path="/questions/:id" element={<Poll />} />
               <Route path="*" element={<NotFound />} />
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Route path="/" element={<LogIn />} />
+              <Route path="/*" element={<NotFound />} />
             </Fragment>
           )}
         </Routes>
@@ -42,7 +42,7 @@ function App({ loading, dispatch }) {
 }
 
 const mapStateToProps = ({ authedUser }) => ({
-  loading: authedUser === null,
+  authorized: authedUser !== null,
 });
 
 export default connect(mapStateToProps)(App);
