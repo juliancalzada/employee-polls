@@ -5,8 +5,8 @@ import {
   _saveQuestionAnswer,
 } from "./_DATA";
 
-export const getInitialData = () => {
-  return Promise.all([_getUsers(), _getQuestions()])
+export const getInitialData = async () => {
+  return Promise.all([await _getUsers(), await _getQuestions()])
     .then(([users, questions]) => ({
       users,
       questions,
@@ -29,5 +29,6 @@ export const saveQuestionAnswer = async (authedUser, qid, answer) => {
     return await _saveQuestionAnswer({ authedUser, qid, answer });
   } catch (e) {
     console.error("An error occurred with [saveQuestionAnswer]: ", e);
+    throw ("An error occurred with [saveQuestionAnswer]: ", e);
   }
 };
