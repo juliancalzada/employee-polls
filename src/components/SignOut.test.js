@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -28,9 +28,9 @@ describe("SignOut", () => {
 
     component = render(
       <Provider store={store}>
-        <BrowserRouter>
+        <Router>
           <SignOut />
-        </BrowserRouter>
+        </Router>
       </Provider>
     );
   });
