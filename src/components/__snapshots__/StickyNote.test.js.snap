@@ -46,6 +46,7 @@ Object {
             </div>
             <a
               class="button is-primary is-rounded is-fullwidth"
+              data-testid="show-button"
               href="/questions/8xf0y6ziyjabvozdd253nd"
             >
               Show
@@ -97,6 +98,7 @@ Object {
           </div>
           <a
             class="button is-primary is-rounded is-fullwidth"
+            data-testid="show-button"
             href="/questions/8xf0y6ziyjabvozdd253nd"
           >
             Show
