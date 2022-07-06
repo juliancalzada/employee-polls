@@ -40,7 +40,7 @@ describe("SignOut", () => {
   });
 
   it("should sign out the current user", () => {
-    const button = screen.getByText(/sign out/);
+    const button = screen.getByTestId('sign-out');
     fireEvent.click(button);
     const { authedUser } = store.getState();
     expect(authedUser).toBeNull();
