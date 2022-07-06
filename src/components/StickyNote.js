@@ -20,6 +20,7 @@ const StickyNote = ({ id, name, avatarURL, timestamp }) => {
             </div>
           </div>
           <Link
+            data-testid="show-button"
             to={`/questions/${id}`}
             className="button is-primary is-rounded is-fullwidth"
           >

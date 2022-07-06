@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -32,9 +32,9 @@ describe("StickyNote", () => {
 
     component = render(
       <Provider store={store}>
-        <BrowserRouter>
+        <Router>
           <StickyNote id={ID} />
-        </BrowserRouter>
+        </Router>
       </Provider>
     );
   });
@@ -42,6 +42,14 @@ describe("StickyNote", () => {
   it("should render a card for a question", () => {
     const name = screen.getByText(NAME);
     expect(name).toBeInTheDocument();
+  });
+
+  it("should navigate to the question page", async () => {
+    const link = screen.getByTestId("show-button");
+    fireEvent.click(link);
+    await waitFor(() => {
+      screen.debug();
+    });
   });
 
   it("should match the snapshot", () => {
