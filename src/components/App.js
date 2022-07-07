@@ -31,8 +31,7 @@ function App({ authorized, dispatch }) {
             </Fragment>
           ) : (
             <Fragment>
-              <Route path="/" element={<LogIn />} />
-              <Route path="/*" element={<NotFound />} />
+              <Route path="*" element={<LogIn />} />
             </Fragment>
           )}
         </Routes>
