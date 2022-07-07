@@ -29,11 +29,12 @@ Object {
           <p
             class="subtitle is-7"
           >
-            <a
-              href="/"
+            <button
+              class="button is-small"
+              data-testid="sign-out"
             >
               sign out
-            </a>
+            </button>
           </p>
         </div>
       </div>
@@ -64,11 +65,12 @@ Object {
         <p
           class="subtitle is-7"
         >
-          <a
-            href="/"
+          <button
+            class="button is-small"
+            data-testid="sign-out"
           >
             sign out
-          </a>
+          </button>
         </p>
       </div>
     </div>
