@@ -12,7 +12,7 @@ const Login = ({ users, dispatch }) => {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(setAuthedUser(selectedUser));
-    navigate("/");
+    // navigate("/");
   };
 
   const handleSelectUser = ({ target }) => {
