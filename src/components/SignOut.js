@@ -5,7 +5,6 @@ import { setAuthedUser } from "../actions/authedUser";
 const SignOut = ({ name, avatarURL, dispatch }) => {
   const handleSignOut = (e) => {
     e.preventDefault();
-    console.info("handleSignOut");
     dispatch(setAuthedUser(null));
   };
 
@@ -20,11 +19,7 @@ const SignOut = ({ name, avatarURL, dispatch }) => {
         <div className="column">
           <p className="title is-6">{name}</p>
           <p className="subtitle is-7">
-            <button
-              data-testid="sign-out"
-              className="button is-small"
-              onClick={handleSignOut}
-            >
+            <button className="button is-small" onClick={handleSignOut}>
               sign out
             </button>
           </p>
