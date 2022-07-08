@@ -51,9 +51,11 @@ const Login = ({ users, dispatch }) => {
               </select>
             </div>
 
-            <button className="button is-primary" onClick={handleLogin}>
-              Login
-            </button>
+            {users.length !== 0 && (
+              <button className="button is-primary" onClick={handleLogin}>
+                Login
+              </button>
+            )}
           </form>
         </div>
       </div>
@@ -61,7 +63,7 @@ const Login = ({ users, dispatch }) => {
   );
 };
 
-const mapStateToProps = ({ users }) => {
+const mapStateToProps = ({ users, authedUser }) => {
   return {
     users: Object.values(users),
   };
