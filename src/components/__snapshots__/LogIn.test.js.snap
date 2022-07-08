@@ -40,65 +40,32 @@ Object {
               class="my-5"
             >
               <div
-                class="field"
+                class="select"
               >
-                <label
-                  class="label"
-                  for="username"
+                <select
+                  id="login-as"
+                  name="user"
+                  role="combobox"
                 >
-                  Username
-                </label>
-                <input
-                  class="input"
-                  id="username"
-                  type="text"
-                  value="zoshikanlu"
-                />
+                  <option
+                    selected=""
+                    value=""
+                  >
+                    Select a user
+                  </option>
+                  <option
+                    value="mtsamis"
+                  >
+                    Mike Tsamis
+                  </option>
+                  <option
+                    value="zoshikanlu"
+                  >
+                    Zenobia Oshikanlu
+                  </option>
+                </select>
               </div>
-              <div
-                class="field"
-              >
-                <label
-                  class="label"
-                  for="password"
-                >
-                  Password
-                </label>
-                <input
-                  class="input"
-                  id="password"
-                  type="password"
-                  value="pass246"
-                />
-              </div>
-              <button
-                class="button is-primary"
-              >
-                Login
-              </button>
             </form>
-          </div>
-        </div>
-        <div
-          class="columns is-centered"
-        >
-          <div
-            class="column is-two-fifths"
-          >
-            <div
-              class="box"
-            >
-              <h6
-                class="is-size-7"
-              >
-                Users
-              </h6>
-              <p>
-                zoshikanlu
-                , 
-                pass246
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -140,65 +107,32 @@ Object {
             class="my-5"
           >
             <div
-              class="field"
+              class="select"
             >
-              <label
-                class="label"
-                for="username"
+              <select
+                id="login-as"
+                name="user"
+                role="combobox"
               >
-                Username
-              </label>
-              <input
-                class="input"
-                id="username"
-                type="text"
-                value="zoshikanlu"
-              />
+                <option
+                  selected=""
+                  value=""
+                >
+                  Select a user
+                </option>
+                <option
+                  value="mtsamis"
+                >
+                  Mike Tsamis
+                </option>
+                <option
+                  value="zoshikanlu"
+                >
+                  Zenobia Oshikanlu
+                </option>
+              </select>
             </div>
-            <div
-              class="field"
-            >
-              <label
-                class="label"
-                for="password"
-              >
-                Password
-              </label>
-              <input
-                class="input"
-                id="password"
-                type="password"
-                value="pass246"
-              />
-            </div>
-            <button
-              class="button is-primary"
-            >
-              Login
-            </button>
           </form>
-        </div>
-      </div>
-      <div
-        class="columns is-centered"
-      >
-        <div
-          class="column is-two-fifths"
-        >
-          <div
-            class="box"
-          >
-            <h6
-              class="is-size-7"
-            >
-              Users
-            </h6>
-            <p>
-              zoshikanlu
-              , 
-              pass246
-            </p>
-          </div>
         </div>
       </div>
     </div>

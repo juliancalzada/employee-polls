@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
+import userEvent from "@testing-library/user-event";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import reducer from "../reducers";
@@ -8,17 +9,19 @@ import LogIn from "./LogIn";
 const mockStore = configureStore([thunk]);
 
 describe("LogIn", () => {
-  const AUTHED_USER = "zoshikanlu";
   let store, component;
 
   beforeEach(() => {
     store = mockStore({
       authedUser: null,
       users: {
-        [AUTHED_USER]: {
-          id: AUTHED_USER,
-          password: "pass246",
-          avatarURL: "https://placekitten.com/g/240/240",
+        mtsamis: {
+          id: "mtsamis",
+          name: "Mike Tsamis",
+        },
+        zoshikanlu: {
+          id: "zoshikanlu",
+          name: "Zenobia Oshikanlu",
         },
       },
     });
@@ -34,16 +37,30 @@ describe("LogIn", () => {
     );
   });
 
-  it("should match the snapshot", () => {
-    expect(component).toMatchSnapshot();
+  it("should show an option for each user", async () => {
+    const options = screen.queryAllByRole("option").map((option) => ({
+      id: option.value,
+      name: option.textContent,
+    }));
+    const users = Object.values(store.getState().users);
+    users.forEach((user) => {
+      const option = options.filter(({ id }) => id === user.id).pop();
+      expect(option).toMatchObject(user);
+    });
   });
 
-  it("should empty the fields", () => {
-    const username = screen.getByLabelText(/Username/);
-    const password = screen.getByLabelText(/Password/);
-    fireEvent.change(username, { target: { value: "" } });
-    fireEvent.change(password, { target: { value: "" } });
-    expect(username.value).toBe("");
-    expect(password.value).toBe("");
+  it("should select a user", () => {
+    const dropdown = screen.getByRole("combobox");
+    const option = screen.getByRole("option", { name: "Mike Tsamis" });
+    fireEvent.change(dropdown, { target: { value: option.value } });
+    // userEvent.selectOptions(
+    //   screen.queryByRole("combobox"),
+    //   screen.queryAllByRole("option", option)
+    // );
+    expect(option.selected).toBe(true);
+  });
+
+  it("should match the snapshot", () => {
+    expect(component).toMatchSnapshot();
   });
 });
