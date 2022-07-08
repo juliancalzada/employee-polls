@@ -6,36 +6,18 @@ import { setAuthedUser } from "../actions/authedUser";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ users, dispatch }) => {
-  const [usernameText, setUsernameText] = useState("zoshikanlu");
-  const [passwordText, setPasswordText] = useState("pass246");
-  const [hasError, setHasError] = useState(false);
+  const [selectedUser, setSelectedUser] = useState("");
   const navigate = useNavigate();
-
-  const handleUsername = ({ target }) => {
-    setHasError(false);
-    setUsernameText(target.value);
-  };
-
-  const handlePassword = ({ target }) => {
-    setHasError(false);
-    setPasswordText(target.value);
-  };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const authedUser = users[usernameText];
+    dispatch(setAuthedUser(selectedUser));
+    navigate("/");
+  };
 
-    if (authedUser) {
-      const { id, password } = authedUser;
-
-      if (id === usernameText && password === passwordText) {
-        setHasError(false);
-        dispatch(setAuthedUser(authedUser.id));
-        navigate("/");
-      }
-    } else {
-      setHasError(true);
-    }
+  const handleSelectUser = ({ target }) => {
+    const user = users.filter(({ id }) => id === target.value).pop();
+    setSelectedUser(user.id);
   };
 
   return (
@@ -52,41 +34,21 @@ const Login = ({ users, dispatch }) => {
             />
           </p>
 
-          {hasError && (
-            <article className="message is-danger">
-              <div className="message-body has-text-left">
-                <p>
-                  The username and password do not match any accounts on record.
-                </p>
-              </div>
-            </article>
-          )}
-
           <form className="my-5">
-            <div className="field">
-              <label htmlFor="username" className="label">
-                Username
-              </label>
-              <input
-                id="username"
-                value={usernameText}
-                onChange={handleUsername}
-                type="text"
-                className={"input" + (hasError ? " is-danger" : "")}
-              />
-            </div>
-
-            <div className="field">
-              <label htmlFor="password" className="label">
-                Password
-              </label>
-              <input
-                id="password"
-                value={passwordText}
-                onChange={handlePassword}
-                type="password"
-                className={"input" + (hasError ? " is-danger" : "")}
-              />
+            <div className="select">
+              <select
+                name="user"
+                id="login-as"
+                onChange={handleSelectUser}
+                value={selectedUser}
+                role="combobox"
+              >
+                {users.map(({ id, name }) => (
+                  <option key={id} value={id}>
+                    {name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <button className="button is-primary" onClick={handleLogin}>
@@ -95,27 +57,13 @@ const Login = ({ users, dispatch }) => {
           </form>
         </div>
       </div>
-      <div className="columns is-centered">
-        <div className="column is-two-fifths">
-          <div className="box">
-            <h6 className="is-size-7">Users</h6>
-            {Object.values(users).map((user) => {
-              return (
-                <p key={user.id}>
-                  {user.id}, {user.password}
-                </p>
-              );
-            })}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ users }) => {
   return {
-    users,
+    users: Object.values(users),
   };
 };
 
