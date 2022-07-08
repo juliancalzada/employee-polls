@@ -16,8 +16,11 @@ const Login = ({ users, dispatch }) => {
   };
 
   const handleSelectUser = ({ target }) => {
-    const user = users.filter(({ id }) => id === target.value).pop();
-    setSelectedUser(user.id);
+    const id =
+      target.value !== ""
+        ? users.filter(({ id }) => id === target.value)[0].id
+        : "";
+    setSelectedUser(id);
   };
 
   return (
@@ -40,9 +43,10 @@ const Login = ({ users, dispatch }) => {
                 name="user"
                 id="login-as"
                 onChange={handleSelectUser}
-                value={selectedUser}
+                defaultValue={selectedUser}
                 role="combobox"
               >
+                <option value="">Select a user</option>
                 {users.map(({ id, name }) => (
                   <option key={id} value={id}>
                     {name}
@@ -51,7 +55,7 @@ const Login = ({ users, dispatch }) => {
               </select>
             </div>
 
-            {users.length !== 0 && (
+            {users.length !== 0 && selectedUser !== "" && (
               <button className="button is-primary" onClick={handleLogin}>
                 Login
               </button>
