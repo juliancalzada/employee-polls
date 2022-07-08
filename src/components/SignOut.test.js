@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
@@ -37,12 +37,5 @@ describe("SignOut", () => {
 
   it("should match the snapshot", () => {
     expect(component).toMatchSnapshot();
-  });
-
-  it("should sign out the current user", () => {
-    const button = screen.getByRole('button');
-    fireEvent.click(button);
-    const { authedUser } = store.getState();
-    expect(authedUser).toBeNull();
   });
 });
