@@ -1,24 +1,87 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import StickyNote from "./StickyNote";
 
 const Dashboard = ({ unanswered, completed }) => {
+  const ALL = "All";
+  const COMPLETED = "Completed";
+  const UNANSWERED = "Unanswered";
+  const [viewState, setViewState] = useState(UNANSWERED);
+
+  let title = UNANSWERED;
+  let list = unanswered;
+
+  switch (viewState) {
+    case UNANSWERED:
+      title = UNANSWERED;
+      list = unanswered;
+      break;
+
+    case COMPLETED:
+      title = COMPLETED;
+      list = completed;
+      break;
+
+    case ALL:
+      title = ALL;
+      list = [].concat(unanswered, completed);
+      break;
+  }
+
+  const handleChangeView = (e) => {
+    e.preventDefault();
+    const { target } = e;
+    console.log("click");
+    setViewState(target.value);
+  };
+
   return (
     <Fragment>
       <h2 className="my-5 is-size-3 has-text-centered-mobile">Dashboard</h2>
-      <h3 className="my-5 is-size-5 has-text-centered-mobile">
-        Unanswered Polls
-      </h3>
-      <div className="columns is-desktop is-multiline">
-        {unanswered.map((id) => (
-          <StickyNote key={id} id={id} />
-        ))}
+      <div className="level">
+        <div className="level-left">
+          <div className="level-item">
+            <div className="buttons has-addons">
+              <button
+                className={`button${
+                  viewState === UNANSWERED ? " is-info is-selected" : ""
+                }`}
+                onClick={handleChangeView}
+                value={UNANSWERED}
+              >
+                {UNANSWERED} Polls
+              </button>
+              <button
+                className={`button${
+                  viewState === COMPLETED ? " is-info is-selected" : ""
+                }`}
+                onClick={handleChangeView}
+                value={COMPLETED}
+              >
+                {COMPLETED} Polls
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="level-right">
+          <div className="level-item">
+            <div className="buttons has-addons">
+              <button
+                className={`button${
+                  viewState === ALL ? " is-info is-selected" : ""
+                }`}
+                onClick={handleChangeView}
+                value={ALL}
+              >
+                {ALL} Polls
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <h3 className="my-5 is-size-5 has-text-centered-mobile">
-        Completed Polls
-      </h3>
+      <h3 className="my-5 is-size-5 has-text-centered-mobile">{title} Polls</h3>
       <div className="columns is-desktop is-multiline">
-        {completed.map((id) => (
+        {list.map((id) => (
           <StickyNote key={id} id={id} />
         ))}
       </div>
