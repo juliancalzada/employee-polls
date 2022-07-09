@@ -3,16 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
-import { useNavigate } from "react-router-dom";
 
 const Login = ({ users, dispatch }) => {
   const [selectedUser, setSelectedUser] = useState("");
-  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(setAuthedUser(selectedUser));
-    // navigate("/");
   };
 
   const handleSelectUser = ({ target }) => {
