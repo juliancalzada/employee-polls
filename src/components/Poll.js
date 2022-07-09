@@ -2,10 +2,25 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { handleSaveQuestionAnswer } from "../actions/shared";
 import { withRouter } from "../utils/helpers";
+import NotFound from "./404";
+
+const INVALID = {
+  id: "no-id",
+  author: "no-author",
+  timestamp: 0,
+  optionOne: {
+    votes: [],
+    text: "Invalid Option",
+  },
+  optionTwo: {
+    votes: [],
+    text: "Invalid Option",
+  },
+};
 
 const Poll = (props) => {
-  // console.table(props);
   const {
+    exists,
     id,
     name,
     avatarURL,
@@ -32,7 +47,7 @@ const Poll = (props) => {
     dispatch(handleSaveQuestionAnswer(id, answer));
   };
 
-  return (
+  return exists ? (
     <div className="columns is-centered">
       <div className="column is-half is-one-quarter-fullhd">
         <div className="card">
@@ -172,19 +187,23 @@ const Poll = (props) => {
         </div>
       </div>
     </div>
+  ) : (
+    <NotFound />
   );
 };
 
 const mapStateToProps = ({ authedUser, users, questions }, { router }) => {
-  const { id } = router.params;
   const user = users[authedUser];
-  const question = questions[id];
+  const { id } = router.params;
+  const exists = Object.keys(questions).includes(id);
+  const question = questions[id] || INVALID;
   const answers = Object.keys(user.answers);
   const selected = user.answers[id] || "";
   const { optionOne, optionTwo } = question;
-  const { name, avatarURL } = users[question.author];
+  const { name, avatarURL } = users[question.author] || "";
 
   return {
+    exists,
     id,
     avatarURL,
     completed: answers.includes(id),
