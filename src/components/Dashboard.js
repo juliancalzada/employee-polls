@@ -12,6 +12,7 @@ const Dashboard = ({ unanswered, completed }) => {
   let list = unanswered;
 
   switch (viewState) {
+    default:
     case UNANSWERED:
       title = UNANSWERED;
       list = unanswered;
