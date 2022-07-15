@@ -1,6 +1,26 @@
-# Getting Started with Create React App
+# Employee Polls
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This small app allows users to create, answer, and track poll questions. Stats are shared through the leaderboard, using the number of polls answered and created as the main metrics.
+
+<table>
+  <tr>
+    <td colspan="2" rowspan="2"><img src="public/screenshots/employee-polls.png"  /></td>
+    <td valign="bottom"><img src="public/screenshots/employee-polls (2).png"  /></td>
+  </tr>
+  <tr>
+    <td rowspan="2"><img src="public/screenshots/employee-polls (1).png"  /></td>
+  </tr>
+  <tr>
+    <td><img src="public/screenshots/employee-polls (3).png"  /></td>
+    <td><img src="public/screenshots/employee-polls (4).png"  /></td>
+  </tr>
+</table>
+
+# Getting Started
+
+Please use `npm install` to download everything you will need. Once installed, use `npm start` to start the app.
+
+This project leverages the [Create React App](https://github.com/facebook/create-react-app) for developerment. In addition to React, this project uses the Redux state management engine, [FontAwesome](https://github.com/FortAwesome/Font-Awesome) icons, the [Bulma](https://github.com/jgthms/bulma) css framework, and [Sass](https://github.com/sass/sass) to bring them all together.
 
 ## Available Scripts
 
@@ -38,33 +58,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
