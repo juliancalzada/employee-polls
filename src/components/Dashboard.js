@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import StickyNote from "./StickyNote";
 
-const Dashboard = ({ unanswered, completed }) => {
+const Dashboard = ({ unanswered, completed, all }) => {
   const ALL = "All";
   const COMPLETED = "Completed";
   const UNANSWERED = "Unanswered";
@@ -25,14 +25,13 @@ const Dashboard = ({ unanswered, completed }) => {
 
     case ALL:
       title = ALL;
-      list = [].concat(unanswered, completed);
+      list = all;
       break;
   }
 
   const handleChangeView = (e) => {
     e.preventDefault();
     const { target } = e;
-    console.log("click");
     setViewState(target.value);
   };
 
@@ -95,7 +94,10 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
   const { answers } = users[authedUser];
 
   // create a new array of answer ids
-  const completed = Object.keys(answers);
+  const completed = Object.keys(answers)
+    .map((id) => questions[id])
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .map(({ id }) => id);
 
   // created a new array of question ids and sort them by date
   const unanswered = Object.values(questions)
@@ -103,9 +105,14 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
     .filter(({ id }) => !completed.includes(id))
     .map(({ id }) => id);
 
+  const all = Object.values(questions)
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .map(({ id }) => id);
+
   return {
     unanswered,
     completed,
+    all,
   };
 };
 
