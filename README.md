@@ -2,25 +2,41 @@
 
 This small app allows users to create, answer, and track poll questions. Stats are shared through the leaderboard, using the number of polls answered and created as the main metrics.
 
-<table>
-  <tr>
-    <td colspan="2" rowspan="2"><img src="public/screenshots/employee-polls.png"  /></td>
-    <td valign="bottom"><img src="public/screenshots/employee-polls (2).png"  /></td>
-  </tr>
-  <tr>
-    <td rowspan="2"><img src="public/screenshots/employee-polls (1).png"  /></td>
-  </tr>
-  <tr>
-    <td><img src="public/screenshots/employee-polls (3).png"  /></td>
-    <td><img src="public/screenshots/employee-polls (4).png"  /></td>
-  </tr>
-</table>
+## Getting Started
 
-# Getting Started
+Please use `npm install` to download everything you will need. Once installed, use `npm start` to start the app. 
 
-Please use `npm install` to download everything you will need. Once installed, use `npm start` to start the app.
+### Login 
+
+Use the dropdown list to impersonate one of the "users". You must be an authoriazed user in order to use the app.
+
+![Lofin](public/screenshots/employee-polls-login.png)
 
 This project leverages the [Create React App](https://github.com/facebook/create-react-app) for developerment. In addition to React, this project uses the Redux state management engine, [FontAwesome](https://github.com/FortAwesome/Font-Awesome) icons, the [Bulma](https://github.com/jgthms/bulma) css framework, and [Sass](https://github.com/sass/sass) to bring them all together.
+
+## Features
+
+### Dashboard
+
+View and sort poll questions currently available.
+
+![Dashboard](public/screenshots/employee-polls-dashboard.png)
+
+### Polls
+
+View, answer, and create poll questions.
+
+![Answered Poll](public/screenshots/employee-polls-poll-answered.png)
+
+![Unanswered Poll](public/screenshots/employee-polls-poll-unanswered.png)
+
+![New Poll](public/screenshots/employee-polls-poll-new.png)
+
+### Leaderboard
+
+See employee scores sorted by polls answered and created.
+
+![Leaderboard](public/screenshots/employee-polls-leaderboard.png)
 
 ## Available Scripts
 
@@ -59,6 +75,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-# License
+## License
 
 employee-polls is Copyright © 2022 Julian Calzada. It is free software, and may be redistributed under the terms specified in the [LICENSE](LICENSE) file.
